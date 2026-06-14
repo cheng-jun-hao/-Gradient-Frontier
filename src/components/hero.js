@@ -49,7 +49,6 @@ export function initHero() {
   function animate() {
     // 光效位置
     const spotSize = 350
-    const halfSpot = spotSize / 2
     spotlight.style.background = `radial-gradient(circle ${spotSize}px at ${mouseX}px ${mouseY}px, var(--hero-matrix-color-lit) 0%, transparent 100%)`
 
     // 视差偏移 — 两层不同速率
@@ -71,8 +70,6 @@ export function initHero() {
     const scaleY = 1 + stretch * Math.abs(Math.sin(angle))
 
     spotlight.style.transform = `translate(-50%, -50%) scaleX(${scaleX}) scaleY(${scaleY}) rotate(${angle}rad)`
-    spotlight.style.left = `${mouseX}px`
-    spotlight.style.top = `${mouseY}px`
 
     // 衰减速度
     velocityX *= 0.92
