@@ -16,7 +16,6 @@ export function initHero() {
       const row = document.createElement('div')
       row.className = `hero__matrix-row ${i % 2 === 0 ? '' : 'hero__matrix-row--alt'}`
       const text = i % 3 === 0 ? textCn : textEn
-      // 重复足够多以填满宽度
       row.textContent = Array(20).fill(text).join('  ·  ')
       container.appendChild(row)
     }
@@ -28,60 +27,17 @@ export function initHero() {
   // 鼠标跟随光效
   let mouseX = 0
   let mouseY = 0
-  let prevMouseX = 0
-  let prevMouseY = 0
-  let velocityX = 0
-  let velocityY = 0
-  let rafId = null
 
   hero.addEventListener('mousemove', (e) => {
     const rect = hero.getBoundingClientRect()
     mouseX = e.clientX - rect.left
     mouseY = e.clientY - rect.top
 
-    // 计算速度
-    velocityX = mouseX - prevMouseX
-    velocityY = mouseY - prevMouseY
-    prevMouseX = mouseX
-    prevMouseY = mouseY
+    spotlight.style.background = `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(0, 198, 255, 0.07), transparent 40%)`
   })
-
-  function animate() {
-    // 光效位置
-    const spotSize = 350
-    spotlight.style.background = `radial-gradient(circle ${spotSize}px at ${mouseX}px ${mouseY}px, var(--hero-matrix-color-lit) 0%, transparent 100%)`
-
-    // 视差偏移 — 两层不同速率
-    const centerX = hero.offsetWidth / 2
-    const centerY = hero.offsetHeight / 2
-    const offsetX1 = (mouseX - centerX) * 0.02
-    const offsetY1 = (mouseY - centerY) * 0.02
-    const offsetX2 = (mouseX - centerX) * -0.015
-    const offsetY2 = (mouseY - centerY) * -0.015
-
-    layer1.style.transform = `translate(${offsetX1}px, ${offsetY1}px)`
-    layer2.style.transform = `translate(${offsetX2}px, ${offsetY2}px)`
-
-    // 快速移动拉伸
-    const speed = Math.sqrt(velocityX * velocityX + velocityY * velocityY)
-    const stretch = Math.min(speed * 0.003, 0.15)
-    const angle = Math.atan2(velocityY, velocityX)
-    const scaleX = 1 + stretch * Math.abs(Math.cos(angle))
-    const scaleY = 1 + stretch * Math.abs(Math.sin(angle))
-
-    spotlight.style.transform = `translate(-50%, -50%) scaleX(${scaleX}) scaleY(${scaleY}) rotate(${angle}rad)`
-
-    // 衰减速度
-    velocityX *= 0.92
-    velocityY *= 0.92
-
-    rafId = requestAnimationFrame(animate)
-  }
-
-  rafId = requestAnimationFrame(animate)
 
   // 清理
   hero.addEventListener('mouseleave', () => {
-    spotlight.style.opacity = '0'
+    spotlight.style.background = 'none'
   })
 }
