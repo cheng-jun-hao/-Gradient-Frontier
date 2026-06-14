@@ -1,0 +1,24 @@
+/* ===== 滚动渐入动画 ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 交错延迟 */
+.fade-in.delay-1 { transition-delay: 0.05s; }
+.fade-in.delay-2 { transition-delay: 0.10s; }
+.fade-in.delay-3 { transition-delay: 0.15s; }
+.fade-in.delay-4 { transition-delay: 0.20s; }
+.fade-in.delay-5 { transition-delay: 0.25s; }
+.fade-in.delay-6 { transition-delay: 0.30s; }
+
+/* ===== 全局过渡 ===== */
+.transition-theme {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}

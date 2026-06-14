@@ -1,0 +1,196 @@
+/* ===== 开场动画 ===== */
+.intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.intro.is-done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 深色背景 */
+.intro__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0A0A0B;
+}
+
+/* 中心扫描线 */
+.intro__line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.6), transparent);
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.intro__line.animate {
+  animation: scanLine 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes scanLine {
+  0% { width: 0; left: 50%; }
+  50% { width: 100%; left: 0; }
+  100% { width: 0; left: 50%; }
+}
+
+/* 中心内容区 */
+.intro__center {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+/* 中文标题 — 逐字显现 */
+.intro__chars {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.intro__char {
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+}
+
+.intro__char.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 逐字出现时的随机字符闪烁效果 */
+.intro__char::before {
+  content: attr(data-glitch);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: rgba(74, 158, 255, 0.5);
+  opacity: 1;
+  transition: opacity 0.1s;
+}
+
+.intro__char.is-revealed::before {
+  opacity: 0;
+}
+
+/* 英文副标题 */
+.intro__en {
+  font-size: clamp(11px, 1.4vw, 14px);
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s ease 0.05s, transform 0.8s ease 0.05s;
+}
+
+.intro__en.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 标语 */
+.intro__tagline {
+  font-size: clamp(11px, 1.2vw, 13px);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.15);
+  margin-top: 20px;
+  opacity: 0;
+  transition: opacity 1s ease 0.3s;
+}
+
+.intro__tagline.is-revealed {
+  opacity: 1;
+}
+
+/* 背景网格线 */
+.intro__grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: space-evenly;
+  pointer-events: none;
+}
+
+.intro__grid-line {
+  width: 1px;
+  height: 0;
+  background: rgba(74, 158, 255, 0.06);
+  transition: height 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.intro__grid-line.is-drawn {
+  height: 100%;
+}
+
+/* 底部微粒光点 */
+.intro__center::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(74, 158, 255, 0.6);
+  transform: translateX(-50%);
+  opacity: 0;
+  box-shadow: 0 0 20px rgba(74, 158, 255, 0.4);
+  transition: opacity 0.6s ease 0.6s;
+}
+
+.intro__center.is-revealed::after {
+  opacity: 1;
+}
+
+/* 退出动画 */
+.intro.is-exiting {
+  animation: introExit 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes introExit {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  40% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(8px);
+    pointer-events: none;
+  }
+}
