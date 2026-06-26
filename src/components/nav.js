@@ -6,6 +6,7 @@ export function initNav() {
 
   const currentPath = window.location.pathname
   const isArchive = currentPath.includes('archive')
+  const isAbout = currentPath.includes('about')
 
   nav.className = 'nav'
   nav.innerHTML = `
@@ -15,8 +16,9 @@ export function initNav() {
         <span class="nav__logo-en">Gradient Frontier</span>
       </a>
       <div class="nav__links" id="nav-links">
-        <a href="${import.meta.env.BASE_URL}" class="nav__link ${!isArchive ? 'active' : ''}">首页</a>
+        <a href="${import.meta.env.BASE_URL}" class="nav__link ${!isArchive && !isAbout ? 'active' : ''}">首页</a>
         <a href="${import.meta.env.BASE_URL}archive.html" class="nav__link ${isArchive ? 'active' : ''}">归档</a>
+        <a href="${import.meta.env.BASE_URL}about.html" class="nav__link ${isAbout ? 'active' : ''}">关于</a>
         <button class="nav__theme-btn" id="theme-toggle" aria-label="切换主题">
           <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="5"></circle>

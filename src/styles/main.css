@@ -289,6 +289,23 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--accent-hover);
 }
 
+.modal__ai-notice {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.modal__ai-notice svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
 /* ===== 页脚 ===== */
 .footer {
   border-top: 1px solid var(--border);
@@ -304,4 +321,123 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
   color: var(--text-tertiary);
   letter-spacing: 0.03em;
+}
+
+.footer__disclaimer {
+  margin-top: 8px;
+  font-size: 11px;
+  opacity: 0.7;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.footer__links {
+  margin-top: 8px;
+}
+
+.footer__links a {
+  color: var(--text-tertiary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.footer__links a:hover {
+  color: var(--accent);
+}
+
+/* ===== 关于页 ===== */
+.about-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.about-title {
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-subtitle {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.about-section {
+  margin-bottom: 40px;
+}
+
+.about-section__title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.about-section__text {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.about-section__text:last-child {
+  margin-bottom: 0;
+}
+
+.about-section__text strong {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.about-list {
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 2;
+  color: var(--text-secondary);
+}
+
+.about-list li {
+  margin-bottom: 6px;
+}
+
+.about-list li strong {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.about-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.about-contact svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.about-contact a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.about-contact a:hover {
+  opacity: 0.8;
 }

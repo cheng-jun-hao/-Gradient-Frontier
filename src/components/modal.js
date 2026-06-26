@@ -34,6 +34,13 @@ export function openModal(item) {
         <div class="modal__tags">
           ${item.tags.map((tag) => `<span class="news-card__tag">${tag}</span>`).join('')}
         </div>
+        <div class="modal__ai-notice">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10"></path>
+            <path d="M12 6v6l4 2"></path>
+          </svg>
+          <span>内容由 AI 辅助生成，仅供参考</span>
+        </div>
       </div>
       <div class="modal__body">
         ${item.content.split('\n').map((p) => `<p>${p}</p>`).join('')}
