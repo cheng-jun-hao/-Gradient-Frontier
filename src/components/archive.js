@@ -17,8 +17,7 @@ export function renderArchive(news, container) {
 
   Object.entries(groups).forEach(([monthKey, items], groupIndex) => {
     const monthDiv = document.createElement('div')
-    monthDiv.className = 'archive-month fade-in'
-    monthDiv.style.transitionDelay = `${groupIndex * 0.05}s`
+    monthDiv.className = 'archive-month'
 
     monthDiv.innerHTML = `
       <div class="archive-month__label">${getMonthLabel(monthKey)}</div>
@@ -39,7 +38,6 @@ export function renderArchive(news, container) {
         .join('')}
     `
 
-    // 绑定点击事件
     monthDiv.querySelectorAll('.archive-item').forEach((el) => {
       el.addEventListener('click', () => {
         const id = el.dataset.id
@@ -48,8 +46,7 @@ export function renderArchive(news, container) {
       })
     })
 
+    fadeInElement(monthDiv, groupIndex * 0.05)
     container.appendChild(monthDiv)
   })
-
-  fadeInElement(container)
 }
